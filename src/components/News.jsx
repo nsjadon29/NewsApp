@@ -12,7 +12,7 @@ const News=(props)=> {
 
     
     const updateNews= async()=>{
-      let url=`https://gnews.io/api/v4/top-headlines?country=${props.country}&category=${props.category}&apikey=3178aecaa23ea7b0535e91faa4a1edec&pageSize=${props.pagesize}`;
+      let url=`https://gnews.io/api/v4/top-headlines?country=${props.country}&category=${props.category}&apikey=2d56da4e4daab5a703197256464cc7a9`;
     let data= await fetch(url);
     let parsedData= await data.json() 
     console.log(parsedData)
@@ -21,24 +21,24 @@ const News=(props)=> {
 
     useEffect(() => {
       updateNews();
-    },[])
+    },[props.category])
 
 
-  const handlePrev= async()=>{
-    updateNews();
-    setPage(page-1)
-  }
+  // const handlePrev= async()=>{
+  //   updateNews();
+  //   setPage(page-1)
+  // }
 
-  const handleNext= async()=>{
-    updateNews();
-    setPage(page+1)
-  }
+  // const handleNext= async()=>{
+  //   updateNews();
+  //   setPage(page+1)
+  // }
     return (
      
       <div className="container my-3">
         <h1 className="text-center ">News Top headlines on {capitalize(props.category)}</h1>
         <div className="row">
-        {articles.map((element)=>{ 
+        {articles?.map((element)=>{ 
           return <div className="col-md-4" key={element.url}>
             <NewsItem
               title={element.title}

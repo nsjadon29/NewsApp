@@ -12,8 +12,8 @@ const App=()=>{
   
     return (
       <>
-        <Navbar />
         <Router>
+       <Navbar />
           <Routes>
             <Route
               path="/"
@@ -27,10 +27,10 @@ const App=()=>{
               path="/entertainment"
               element={<News pagesize={5} country="in" category="entertainment" />}
             />
-            <Route
+            {/* <Route
               path="/general"
               element={<News pagesize={5} country="in" category="general" />}
-            />
+            /> */}
             <Route
               path="/health"
               element={<News pagesize={5} country="in" category="health" />}
