@@ -12,7 +12,7 @@ const News=(props)=> {
 
     
     const updateNews= async()=>{
-      let url=`https://gnews.io/api/v4/top-headlines?country=${props.country}&category=${props.category}&apikey=cd0fa6e3c85ca50aadac37477157be1f&pageSize=${props.pagesize}`;
+      let url=`https://gnews.io/api/v4/top-headlines?country=${props.country}&category=${props.category}&apikey=3178aecaa23ea7b0535e91faa4a1edec&pageSize=${props.pagesize}`;
     let data= await fetch(url);
     let parsedData= await data.json() 
     console.log(parsedData)
@@ -26,7 +26,7 @@ const News=(props)=> {
 
   const handlePrev= async()=>{
     console.log("prev")
-    let url=`https://gnews.io/api/v4/top-headlines?country=${props.country}&category=${props.category}&apiKey=cd0fa6e3c85ca50aadac37477157be1f&page=${page}&pageSize=${props.pagesize}`;
+    let url=`https://gnews.io/api/v4/top-headlines?country=${props.country}&category=${props.category}&apiKey=3178aecaa23ea7b0535e91faa4a1edec&page=${page}&pageSize=${props.pagesize}`;
     let data= await fetch(url);
     let parsedData= await data.json()
     console.log(parsedData)
@@ -36,7 +36,7 @@ const News=(props)=> {
 
   const handleNext= async()=>{
     console.log("next")
-    let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=cd0fa6e3c85ca50aadac37477157be1f&page=${page}&pageSize=${props.pagesize}`;
+    let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=3178aecaa23ea7b0535e91faa4a1edec&page=${page}&pageSize=${props.pagesize}`;
     let data= await fetch(url);
     let parsedData= await data.json() 
     console.log(parsedData)
@@ -46,7 +46,7 @@ const News=(props)=> {
     return (
      
       <div className="container my-3">
-        <h1 className="text-center">News Top headlines on {capitalize(props.category)}</h1>
+        <h1 className="text-center ">News Top headlines on {capitalize(props.category)}</h1>
         <div className="row">
         {articles.map((element)=>{ 
           return <div className="col-md-4" key={element.url}>
