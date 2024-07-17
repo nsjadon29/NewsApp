@@ -12,7 +12,7 @@ const News=(props)=> {
 
     
     const updateNews= async()=>{
-      let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=ad27bda0e61f4a2985b4dcae2ad320f5&pageSize=${props.pagesize}`;
+      let url=`https://gnews.io/api/v4/top-headlines?country=${props.country}&category=${props.category}&apikey=cd0fa6e3c85ca50aadac37477157be1f&pageSize=${props.pagesize}`;
     let data= await fetch(url);
     let parsedData= await data.json() 
     console.log(parsedData)
@@ -26,7 +26,7 @@ const News=(props)=> {
 
   const handlePrev= async()=>{
     console.log("prev")
-    let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=ad27bda0e61f4a2985b4dcae2ad320f5&page=${page}&pageSize=${props.pagesize}`;
+    let url=`https://gnews.io/api/v4/top-headlines?country=${props.country}&category=${props.category}&apiKey=cd0fa6e3c85ca50aadac37477157be1f&page=${page}&pageSize=${props.pagesize}`;
     let data= await fetch(url);
     let parsedData= await data.json()
     console.log(parsedData)
@@ -36,7 +36,7 @@ const News=(props)=> {
 
   const handleNext= async()=>{
     console.log("next")
-    let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=ad27bda0e61f4a2985b4dcae2ad320f5&page=${page}&pageSize=${props.pagesize}`;
+    let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=cd0fa6e3c85ca50aadac37477157be1f&page=${page}&pageSize=${props.pagesize}`;
     let data= await fetch(url);
     let parsedData= await data.json() 
     console.log(parsedData)
@@ -53,9 +53,9 @@ const News=(props)=> {
             <NewsItem
               title={element.title}
               description={element.description}
-              imageUrl={element.urlToImage}
-              newsUrl={element.url} 
-              author={element.author}  
+              imageUrl={element.image}
+              newsUrl={element.source.url} 
+              author={element.source.name}  
               date={element.publishedAt}
             />
           </div>})}
