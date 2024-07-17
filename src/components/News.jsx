@@ -12,7 +12,7 @@ const News=(props)=> {
 
     
     const updateNews= async()=>{
-      let url=`https://gnews.io/api/v4/top-headlines?country=${props.country}&category=${props.category}&apikey=bb72f8b8950985ebdb7468a8d2fb3bd0&pageSize=${props.pagesize}`;
+      let url=`https://gnews.io/api/v4/top-headlines?country=${props.country}&category=${props.category}&apikey=cd0fa6e3c85ca50aadac37477157be1f&pageSize=${props.pagesize}`;
     let data= await fetch(url);
     let parsedData= await data.json() 
     console.log(parsedData)
@@ -26,7 +26,7 @@ const News=(props)=> {
 
   const handlePrev= async()=>{
     console.log("prev")
-    let url=`https://gnews.io/api/v4/top-headlines?country=${props.country}&category=${props.category}&apiKey=bb72f8b8950985ebdb7468a8d2fb3bd0&page=${page}&pageSize=${props.pagesize}`;
+    let url=`https://gnews.io/api/v4/top-headlines?country=${props.country}&category=${props.category}&apiKey=cd0fa6e3c85ca50aadac37477157be1f&page=${page}&pageSize=${props.pagesize}`;
     let data= await fetch(url);
     let parsedData= await data.json()
     console.log(parsedData)
@@ -36,7 +36,7 @@ const News=(props)=> {
 
   const handleNext= async()=>{
     console.log("next")
-    let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=bb72f8b8950985ebdb7468a8d2fb3bd0&page=${page}&pageSize=${props.pagesize}`;
+    let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=cd0fa6e3c85ca50aadac37477157be1f&page=${page}&pageSize=${props.pagesize}`;
     let data= await fetch(url);
     let parsedData= await data.json() 
     console.log(parsedData)
