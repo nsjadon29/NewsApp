@@ -1,77 +1,71 @@
-import React, { Component } from "react";
+import React, { useState, useEffect} from "react";
 import NewsItem from "./NewsItem";
 
-export class News extends Component {
-  
-  constructor(){
-    super();
-    this.state={
-      articles: [],
-      loading:false,
-      page:1,
-      //pageSize: 20
-    }
-  }
+const News=(props)=> {
+  const [articles, setArticles] = useState([])
+  const [page, setPage] = useState(1)
+  // document.title=`${this.capitalize(props.category)} - Current News`
 
-  async componentDidMount(){
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=169dadfa6e7a45d393942dc5a1099cea&pageSize=${this.props.pagesize}`;
+  const capitalize=(word)=> {
+    return word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
+    } 
+
+    
+    const updateNews= async()=>{
+      let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=ad27bda0e61f4a2985b4dcae2ad320f5&pageSize=${props.pagesize}`;
     let data= await fetch(url);
     let parsedData= await data.json() 
     console.log(parsedData)
-    this.setState({articles:parsedData.articles})
+    setArticles(parsedData.articles)
+    }
 
-  }
+    useEffect(() => {
+      updateNews();
+    },[])
 
-  handlePrev= async()=>{
+
+  const handlePrev= async()=>{
     console.log("prev")
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=169dadfa6e7a45d393942dc5a1099cea&page=${this.state.page-1}&pageSize=${this.props.pagesize}`;
+    let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=ad27bda0e61f4a2985b4dcae2ad320f5&page=${page}&pageSize=${props.pagesize}`;
     let data= await fetch(url);
     let parsedData= await data.json()
     console.log(parsedData)
-
-    this.setState({
-      page: this.state.page-1,
-      articles: parsedData.articles
-    })
+    setArticles(parsedData.articles)
+    setPage(page-1)
   }
 
-  handleNext= async()=>{
+  const handleNext= async()=>{
     console.log("next")
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=169dadfa6e7a45d393942dc5a1099cea&page=${this.state.page+1}&pageSize=${this.props.pagesize}`;
+    let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=ad27bda0e61f4a2985b4dcae2ad320f5&page=${page}&pageSize=${props.pagesize}`;
     let data= await fetch(url);
     let parsedData= await data.json() 
     console.log(parsedData)
-
-    this.setState({
-      page: this.state.page+1,
-      articles: parsedData.articles
-    })
+    setArticles(parsedData.articles)
+    setPage(page+1)
   }
-
-  render() {
-
     return (
      
       <div className="container my-3">
-        <h1 className="text-center">News Top headlines</h1>
+        <h1 className="text-center">News Top headlines on {capitalize(props.category)}</h1>
         <div className="row">
-        {this.state.articles.map((element)=>{ 
+        {articles.map((element)=>{ 
           return <div className="col-md-4" key={element.url}>
             <NewsItem
               title={element.title}
               description={element.description}
               imageUrl={element.urlToImage}
-              newsUrl={element.url}    
+              newsUrl={element.url} 
+              author={element.author}  
+              date={element.publishedAt}
             />
           </div>})}
         </div>
         <div className="container d-flex justify-content-between">
-        <button disabled={this.state.page<=1 }type="button" className="btn btn-dark" onClick={this.handlePrev}>&larr; Previous</button>
-        <button type="button" className="btn btn-dark" onClick={this.handleNext}>Next &rarr;</button>
+        <button disabled={page<=1 }type="button" className="btn btn-dark" onClick={handlePrev}>&larr; Previous</button>
+        <button type="button" className="btn btn-dark" onClick={handleNext}>Next &rarr;</button>
         </div>
       </div>
     );
-  }
 }
 
 export default News;
