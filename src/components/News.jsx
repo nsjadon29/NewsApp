@@ -25,22 +25,12 @@ const News=(props)=> {
 
 
   const handlePrev= async()=>{
-    console.log("prev")
-    let url=`https://gnews.io/api/v4/top-headlines?country=${props.country}&category=${props.category}&apiKey=3178aecaa23ea7b0535e91faa4a1edec&page=${page}&pageSize=${props.pagesize}`;
-    let data= await fetch(url);
-    let parsedData= await data.json()
-    console.log(parsedData)
-    setArticles(parsedData.articles)
+    updateNews();
     setPage(page-1)
   }
 
   const handleNext= async()=>{
-    console.log("next")
-    let url=`https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=3178aecaa23ea7b0535e91faa4a1edec&page=${page}&pageSize=${props.pagesize}`;
-    let data= await fetch(url);
-    let parsedData= await data.json() 
-    console.log(parsedData)
-    setArticles(parsedData.articles)
+    updateNews();
     setPage(page+1)
   }
     return (
@@ -60,10 +50,10 @@ const News=(props)=> {
             />
           </div>})}
         </div>
-        <div className="container d-flex justify-content-between">
+        {/* <div className="container d-flex justify-content-between">
         <button disabled={page<=1 }type="button" className="btn btn-dark" onClick={handlePrev}>&larr; Previous</button>
-        <button type="button" className="btn btn-dark" onClick={handleNext}>Next &rarr;</button>
-        </div>
+        <button type="button" className="btn btn-dark" onClick={handleNext}>Next &rarr;</button> */}
+        {/* </div> */}
       </div>
     );
 }
